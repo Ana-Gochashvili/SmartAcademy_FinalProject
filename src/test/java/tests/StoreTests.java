@@ -40,7 +40,6 @@ public class StoreTests extends BaseAuth {
         softAssert.assertAll();
     }
 
-
     @Test(description = "Finds purchase order by ID", priority = 1)
     public void findPurchaseOrderByID() {
         Response responseBody = storeResponseBody.getOrderById(headerConfig.getHeaders(), orderDetails.getId(), Endpoint.Store_Get_Order);
@@ -59,7 +58,6 @@ public class StoreTests extends BaseAuth {
         softAssert.assertAll();
     }
 
-
     @Test(description = "Deletes purchase order by ID", priority = 2)
     public void deletePurchaseOrder() {
         Response responseBody = storeResponseBody.deleteOrder(headerConfig.getHeaders(), orderDetails.getId(), Endpoint.Store_Delete_Order);
@@ -67,7 +65,6 @@ public class StoreTests extends BaseAuth {
         Assert.assertEquals(storeResponseBody.getResponseStringElement(responseBody, "message"), String.valueOf(orderDetails.getId()),
                 "Incorrect message text!");
     }
-
 
     @Test(description = "Checks for deletion of non-existent purchase order by ID", priority = 3)
     public void checkForDeletionNonExistentPurchaseOrder() {
@@ -78,7 +75,6 @@ public class StoreTests extends BaseAuth {
         Assert.assertEquals(storeResponseBody.getResponseStringElement(responseBody, "message"), AlertMessages.incorrectRequestErrorMessage,
                 "Incorrect message text!");
     }
-
 
     @Test(description = "Checks search for deleted purchase order by ID", priority = 4)
     public void checkSearchForDeletedPurchaseOrder() {

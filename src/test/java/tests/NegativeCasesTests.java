@@ -6,24 +6,14 @@ import endpoints.Endpoint;
 import io.restassured.response.Response;
 import org.json.JSONObject;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.BaseAuth;
-
-import static dataObject.DataObject.*;
+import utils.TestDataProvider;
 
 public class NegativeCasesTests extends BaseAuth {
 
-    @DataProvider(name = "invalidOrderData", parallel = true)
-    public Object[][] createInvalidOrderData() {
-        return new Object[][]{
-                {invalidOrderId, petId, quantity},
-                {orderId, invalidPetId, quantity},
-                {orderId, petId, invalidQuantity}
-        };
-    }
-
-    @Test(description = "Places An Order For A Pet With Invalid Data", dataProvider = "invalidOrderData")
+    @Test(description = "Places An Order For A Pet With Invalid Data",
+            dataProvider = "invalidDataProvider", dataProviderClass = TestDataProvider.class)
     public void placeAnOrder(Object orderId, Object petId, Object quantity) {
         JSONObject orderRequestBody = storeResponseBody.
                 getOrderRequestBody(orderId, petId, quantity);

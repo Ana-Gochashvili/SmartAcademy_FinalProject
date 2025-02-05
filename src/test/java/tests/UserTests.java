@@ -47,7 +47,7 @@ public class UserTests extends BaseAuth {
                 "Incorrect email!");
         softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "password"), userData.getPassword(),
                 "Incorrect password!");
-        softAssert.assertEquals( userResponseBody.getResponseStringElement(responseBody, "phone"), userData.getPhone(),
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "phone"), userData.getPhone(),
                 "Incorrect phone number!");
         softAssert.assertEquals(userResponseBody.getResponseIntElement(responseBody, "userStatus"), userData.getUserStatus(),
                 "Incorrect user status!");
