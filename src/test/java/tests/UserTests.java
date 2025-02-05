@@ -34,30 +34,22 @@ public class UserTests extends BaseAuth {
         Response responseBody = userResponseBody.
                 getUser(headerConfig.getHeaders(), userData.getUsername(), Endpoint.User_Get);
 
-        String actualUsername = userResponseBody.getResponseBodyStringElement(responseBody, "username");
-        String actualFirstName = userResponseBody.getResponseBodyStringElement(responseBody, "firstName");
-        String actualLastName = userResponseBody.getResponseBodyStringElement(responseBody, "lastName");
-        String actualEmail = userResponseBody.getResponseBodyStringElement(responseBody, "email");
-        String actualPassword = userResponseBody.getResponseBodyStringElement(responseBody, "password");
-        String actualPhone = userResponseBody.getResponseBodyStringElement(responseBody, "phone");
-        int actualUserStatus = userResponseBody.getResponseBodyIntElement(responseBody, "userStatus");
-
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(responseBody.getStatusCode(), StatusCodesData.SUCCESS_200.getValue(),
                 "Incorrect status code!");
-        softAssert.assertEquals(actualUsername, userData.getUsername(),
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "username"), userData.getUsername(),
                 "Incorrect username!");
-        softAssert.assertEquals(actualFirstName, userData.getFirstName(),
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "firstName"), userData.getFirstName(),
                 "Incorrect firstname!");
-        softAssert.assertEquals(actualLastName, userData.getLastName(),
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "lastName"), userData.getLastName(),
                 "Incorrect lastname!");
-        softAssert.assertEquals(actualEmail, userData.getEmail(),
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "email"), userData.getEmail(),
                 "Incorrect email!");
-        softAssert.assertEquals(actualPassword, userData.getPassword(),
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "password"), userData.getPassword(),
                 "Incorrect password!");
-        softAssert.assertEquals(actualPhone, userData.getPhone(),
+        softAssert.assertEquals( userResponseBody.getResponseStringElement(responseBody, "phone"), userData.getPhone(),
                 "Incorrect phone number!");
-        softAssert.assertEquals(actualUserStatus, userData.getUserStatus(),
+        softAssert.assertEquals(userResponseBody.getResponseIntElement(responseBody, "userStatus"), userData.getUserStatus(),
                 "Incorrect user status!");
         softAssert.assertAll();
     }
@@ -79,15 +71,12 @@ public class UserTests extends BaseAuth {
         Response responseBody = userResponseBody.
                 getUser(headerConfig.getHeaders(), userData.getUsername(), Endpoint.User_Get);
 
-        String actualPassword = userResponseBody.getResponseBodyStringElement(responseBody, "password");
-        String actualPhone = userResponseBody.getResponseBodyStringElement(responseBody, "phone");
-
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(responseBody.getStatusCode(), StatusCodesData.SUCCESS_200.getValue(),
                 "Incorrect status code!");
-        softAssert.assertEquals(actualPassword, newPassword,
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "password"), newPassword,
                 "Incorrect password!");
-        softAssert.assertEquals(actualPhone, newPhone,
+        softAssert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "phone"), newPhone,
                 "Incorrect phone number!");
         softAssert.assertAll();
     }
@@ -97,7 +86,7 @@ public class UserTests extends BaseAuth {
         Response responseBody = userResponseBody.
                 logUser(headerConfig.getHeaders(), userData.getUsername(), userData.getPassword(), Endpoint.User_Get_Login);
 
-        String responseMessage = userResponseBody.getResponseBodyStringElement(responseBody, "message");
+        String responseMessage = userResponseBody.getResponseStringElement(responseBody, "message");
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(responseBody.getStatusCode(), StatusCodesData.SUCCESS_200.getValue(),
@@ -114,11 +103,9 @@ public class UserTests extends BaseAuth {
         Response responseBody = userResponseBody.
                 loggingUserOut(headerConfig.getHeaders(), Endpoint.User_Get_Logout);
 
-        String responseMessage = userResponseBody.getResponseBodyStringElement(responseBody, "message");
-
         Assert.assertEquals(responseBody.getStatusCode(), StatusCodesData.SUCCESS_200.getValue(),
                 "Incorrect status code!");
-        Assert.assertEquals(responseMessage, AlertMessages.logoutSuccessMessage,
+        Assert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "message"), AlertMessages.logoutSuccessMessage,
                 "Incorrect message text!");
     }
 
@@ -127,11 +114,9 @@ public class UserTests extends BaseAuth {
         Response responseBody = userResponseBody.
                 deleteUser(headerConfig.getHeaders(), userData.getUsername(), Endpoint.User_Delete);
 
-        String responseMessage = userResponseBody.getResponseBodyStringElement(responseBody, "message");
-
         Assert.assertEquals(responseBody.getStatusCode(), StatusCodesData.SUCCESS_200.getValue(),
                 "Incorrect status code!");
-        Assert.assertEquals(responseMessage, userData.getUsername(),
+        Assert.assertEquals(userResponseBody.getResponseStringElement(responseBody, "message"), userData.getUsername(),
                 "Incorrect message!");
     }
 }

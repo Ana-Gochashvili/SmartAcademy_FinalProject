@@ -23,7 +23,7 @@ public class NegativeCasesTests extends BaseAuth {
         };
     }
 
-    @Test(description = "Places An Order For A Pet", dataProvider = "invalidOrderData")
+    @Test(description = "Places An Order For A Pet With Invalid Data", dataProvider = "invalidOrderData")
     public void placeAnOrder(Object orderId, Object petId, Object quantity) {
         JSONObject orderRequestBody = storeResponseBody.
                 getOrderRequestBody(orderId, petId, quantity);

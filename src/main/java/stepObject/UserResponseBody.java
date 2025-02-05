@@ -1,5 +1,6 @@
 package stepObject;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 import utils.UserDataBuilder;
 
@@ -23,6 +24,7 @@ public class UserResponseBody {
 
     public Response createUser(Map<String, String> headers, UserDataBuilder userData, String endpoint) {
         return given()
+                .filter(new AllureRestAssured())
                 .headers(headers)
                 .body(userData)
                 .when()
@@ -34,6 +36,7 @@ public class UserResponseBody {
 
     public Response getUser(Map<String, String> headers, String userName, String endpoint) {
         return given()
+                .filter(new AllureRestAssured())
                 .headers(headers)
                 .pathParam("username", userName)
                 .when()
@@ -43,16 +46,17 @@ public class UserResponseBody {
                 .extract().response();
     }
 
-    public int getResponseBodyIntElement(Response responseBody, String element) {
+    public int getResponseIntElement(Response responseBody, String element) {
         return responseBody.getBody().jsonPath().getInt(element);
     }
 
-    public String getResponseBodyStringElement(Response responseBody, String element) {
+    public String getResponseStringElement(Response responseBody, String element) {
         return responseBody.getBody().jsonPath().getString(element);
     }
 
     public Response updateUser(Map<String, String> headers, String userName, UserDataBuilder userData, String endpoint) {
         return given()
+                .filter(new AllureRestAssured())
                 .headers(headers)
                 .pathParam("username", userName)
                 .body(userData)
@@ -66,6 +70,7 @@ public class UserResponseBody {
 
     public Response logUser(Map<String, String> headers, String username, String password, String endpoint) {
         return given()
+                .filter(new AllureRestAssured())
                 .headers(headers)
                 .queryParams("username", username,
                         "password", password)
@@ -78,6 +83,7 @@ public class UserResponseBody {
 
     public Response loggingUserOut(Map<String, String> headers, String endpoint) {
         return given()
+                .filter(new AllureRestAssured())
                 .headers(headers)
                 .when()
                 .get(endpoint)
@@ -88,6 +94,7 @@ public class UserResponseBody {
 
     public Response deleteUser(Map<String, String> headers, String userName, String endpoint) {
         return given()
+                .filter(new AllureRestAssured())
                 .headers(headers)
                 .pathParam("username", userName)
                 .when()
