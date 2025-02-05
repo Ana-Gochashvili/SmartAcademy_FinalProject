@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Test Suite - SmartAcademy_FinalProject" verbose="2" parallel="classes" thread-count="2">
+
+    <test name="API testing - Positive cases">
+        <classes>
+            <class name="tests.StoreTests"/>
+            <class name="tests.UserTests"/>
+        </classes>
+    </test>
+
+    <test name="API testing - Negative cases">
+        <classes>
+            <class name="tests.NegativeCasesTests"/>
+        </classes>
+    </test>
+
+</suite>
