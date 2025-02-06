@@ -103,10 +103,9 @@ public class UserResponseBody {
     }
 
     @Step("Sends DELETE request to delete the user")
-    public Response deleteUser(Map<String, String> headers, String userName, String endpoint) {
+    public Response deleteUser(String userName, String endpoint) {
         return given()
                 .filter(new AllureRestAssured())
-                .headers(headers)
                 .pathParam("username", userName)
                 .when()
                 .delete(endpoint)

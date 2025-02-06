@@ -62,10 +62,9 @@ public class StoreResponseBody {
     }
 
     @Step("Sends DELETE request to delete order")
-    public Response deleteOrder(Map<String, String> headers, int orderId, String endpoint) {
+    public Response deleteOrder(int orderId, String endpoint) {
         return given()
                 .filter(new AllureRestAssured())
-                .headers(headers)
                 .pathParam("orderId", orderId)
                 .when()
                 .delete(endpoint)

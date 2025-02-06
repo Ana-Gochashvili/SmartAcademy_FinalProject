@@ -18,7 +18,8 @@ public class UserTests extends BaseAuth {
 
     @BeforeMethod
     public void buildUserData() {
-        userData = userResponseBody.getUserData(userId, userName, firstName, lastName, email, password, phone, userStatus);
+        userData = userResponseBody.
+                getUserData(userId, userName, firstName, lastName, email, password, phone, userStatus);
     }
 
     @Test(description = "Creates user")
@@ -112,7 +113,7 @@ public class UserTests extends BaseAuth {
     @Test(description = "Delete user", priority = 6)
     public void DeleteUser() {
         Response responseBody = userResponseBody.
-                deleteUser(headerConfig.getHeaders(), userData.getUsername(), Endpoint.User_Delete);
+                deleteUser(userData.getUsername(), Endpoint.User_Delete);
 
         Assert.assertEquals(responseBody.getStatusCode(), StatusCodesData.SUCCESS_200.getValue(),
                 "Incorrect status code!");

@@ -60,7 +60,7 @@ public class StoreTests extends BaseAuth {
 
     @Test(description = "Deletes purchase order by ID", priority = 2)
     public void deletePurchaseOrder() {
-        Response responseBody = storeResponseBody.deleteOrder(headerConfig.getHeaders(), orderDetails.getId(), Endpoint.Store_Delete_Order);
+        Response responseBody = storeResponseBody.deleteOrder(orderDetails.getId(), Endpoint.Store_Delete_Order);
 
         Assert.assertEquals(storeResponseBody.getResponseStringElement(responseBody, "message"), String.valueOf(orderDetails.getId()),
                 "Incorrect message text!");
@@ -68,7 +68,7 @@ public class StoreTests extends BaseAuth {
 
     @Test(description = "Checks for deletion of non-existent purchase order by ID", priority = 3)
     public void checkForDeletionNonExistentPurchaseOrder() {
-        Response responseBody = storeResponseBody.deleteOrder(headerConfig.getHeaders(), orderDetails.getId(), Endpoint.Store_Delete_Order);
+        Response responseBody = storeResponseBody.deleteOrder(orderDetails.getId(), Endpoint.Store_Delete_Order);
 
         Assert.assertEquals(responseBody.getStatusCode(), StatusCodesData.Order_Not_Found_404.getValue(),
                 "Incorrect status code!");
