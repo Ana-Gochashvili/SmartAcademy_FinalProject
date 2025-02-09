@@ -23,7 +23,7 @@ public class NegativeCasesTests extends BaseAuth {
 
         Assert.assertEquals(responseBody.getStatusCode(), StatusCodesData.Internal_Server_Error_500.getValue(),
                 "Incorrect status code!");
-        Assert.assertEquals(responseBody.jsonPath().getString("message"), AlertMessages.internalServerErrorMessage,
+        Assert.assertEquals(storeResponseBody.getResponseStringElement(responseBody,"message"), AlertMessages.internalServerErrorMessage,
                 "Incorrect message text!");
     }
 }
